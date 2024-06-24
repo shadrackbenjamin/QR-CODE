@@ -4,7 +4,7 @@ const camera = scannerDiv.querySelector("h1 .fa-camera");
 const stopCam = scannerDiv.querySelector("h1 .fa-circle-stop");
 
 const form = scannerDiv.querySelector(".scanner-form");
-const fileInput = form.querySelector("input");
+const fileInput = form.querySelector("input[type='file']");
 const p = form.querySelector("p");
 const img = form.querySelector("img");
 const video = form.querySelector("video");
@@ -14,7 +14,7 @@ const textarea = scannerDiv.querySelector(".scanner-details textarea");
 const copyBtn = scannerDiv.querySelector(".scanner-details .copy");
 const closeBtn = scannerDiv.querySelector(".scanner-details .close");
 
-// input file
+// Input file
 form.addEventListener("click", () => fileInput.click());
 
 // Scan QR Code from file input
