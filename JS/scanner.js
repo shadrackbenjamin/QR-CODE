@@ -30,11 +30,16 @@ function fetchRequest(file) {
 
     p.innerText = "Scanning QR Code...";
 
-    fetch(`http://api.qrserver.com/v1/read-qr-code/`, {
+    fetch(`https://api.qrserver.com/v1/read-qr-code/`, {  // Use HTTPS
         method: "POST",
         body: formData
-    }).then(res => res.json()).then(result => {
-        let text = result[0].symbol[0].data;
+    }).then(res => {
+        if (!res.ok) {
+            throw new Error(`Server responded with ${res.status}`);
+        }
+        return res.json();
+    }).then(result => {
+        let text = result[0]?.symbol[0]?.data;
 
         if (!text) return p.innerText = "Couldn't Scan QR Code";
 
@@ -45,7 +50,7 @@ function fetchRequest(file) {
         textarea.innerText = text;
     }).catch(err => {
         console.error(err);
-        p.innerText = "Error scanning QR Code";
+        p.innerText = `Error scanning QR Code: ${err.message}`;
     });
 }
 
@@ -109,28 +114,3 @@ copyBtn.addEventListener("click", () => {
 
 // Close scan details
 closeBtn.addEventListener("click", () => stopScan());
-
-
-camera.addEventListener("click", async () => {
-    camera.style.display = "none";
-    p.innerText = "Scanning QR Code...";
-
-    try {
-        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
-        video.srcObject = stream;
-        video.play();
-
-        form.classList.add("active-video");
-        stopCam.style.display = "inline-block";
-
-        scanner = new Instascan.Scanner({ video: video });
-        scanner.addListener("scan", c => {
-            scannerDiv.classList.add("active");
-            textarea.innerText = c;
-        });
-    } catch (err) {
-        console.error(err);
-        p.innerText = "Error accessing camera";
-        camera.style.display = "inline-block";
-    }
-});
