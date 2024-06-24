@@ -109,3 +109,28 @@ copyBtn.addEventListener("click", () => {
 
 // Close scan details
 closeBtn.addEventListener("click", () => stopScan());
+
+
+camera.addEventListener("click", async () => {
+    camera.style.display = "none";
+    p.innerText = "Scanning QR Code...";
+
+    try {
+        const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' } });
+        video.srcObject = stream;
+        video.play();
+
+        form.classList.add("active-video");
+        stopCam.style.display = "inline-block";
+
+        scanner = new Instascan.Scanner({ video: video });
+        scanner.addListener("scan", c => {
+            scannerDiv.classList.add("active");
+            textarea.innerText = c;
+        });
+    } catch (err) {
+        console.error(err);
+        p.innerText = "Error accessing camera";
+        camera.style.display = "inline-block";
+    }
+});
