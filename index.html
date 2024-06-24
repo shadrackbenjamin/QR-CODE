@@ -3,11 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="icon" type="image/x-icon" href="./QR.PNG">
+    <!-- Favicon with different formats for better compatibility -->
+    <link rel="icon" href="./QR.ico" type="image/x-icon">
+    <link rel="icon" href="./QR.png" type="image/png">
     <link rel="stylesheet" href="./CSS/style.css">
     <link rel="stylesheet" href="./CSS/generator.css">
     <link rel="stylesheet" href="./CSS/scanner.css">
-
     
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" integrity="sha512-SnH5WK+bZxgPHs44uWIX+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkcmfRyVX3pBnMFcV7oQPJkl9QevSCWr3W6A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <title>QR CODE</title>
@@ -34,9 +35,7 @@
                 <div class="generator-btn">
                     <button class="btn-link">Download <i class="fa-solid fa-download"></i></button>
                 </div>
-
-
-</div>
+        </div>
         <!-- Scanner -->
         <div class="scanner" style="display: none;">
             <h1>
@@ -56,7 +55,6 @@
                 </div>
             </form>
 
-
             <div class="scanner-details">
                 <textarea disabled>https://www.youtube.com/watch?v=SmAZJcErw7w</textarea>
             
@@ -68,14 +66,11 @@
         </div>
     </div>
 
-
 <!-- Javascript -->
     <script src="./JS/main.js"></script>
     <script src="./JS/generator.js"></script>
     <script src="./JS/scanner.js"></script>
     <script src="./JS/instacan.min.js"></script>
     <script src="https://rawgit.com/schmich/instascan-builds/master/instascan.min.js"></script>
-
-    
 </body>
 </html>
